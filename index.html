@@ -1,131 +1,550 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
-    <link rel="stylesheet" href="./styles.css">
-</head>
-<body>
-    <div class="container">
-        <div class="nav">
-                <div class="top1">
-                    <div class="search-bar">
-               <label for="search"><img src="./search-line-icon.svg" alt="search-bar" width="20" height="15">
-               </label> 
-               <input type="search" id = "search"  style="background: #ddd; border: 1px solid  style=#ddd;";">
-                </div>
-                <div class="sticker">
-               <p><img src="./bell-ring.svg" alt="bell-ring" width="15" height="auto" >
-                <img src="./gohan.jpg" alt="gohan-dbz"  width="50" height="auto" class="gohan">Gohan</p>
-              </div>
-              </div>
-              <div class="top2">
-               <div class="intro">
-               <div class="center"> <img src="./gohan.jpg" alt="gohan" width="50" height="auto" class="gohan"> 
-                </div>
-                <div class="h3,p">
-                <h3>Hi there,</h3>
-                <p>i'm gohan(@DBZ)</p>
-               </div>
-               </div>
-               <div class="button">
-               <button class="buttons">New</button>
-               <button class="buttons">Upload</button>
-               <button class="buttons">Share</button>
-            </div>
-            </div>
-        </div>
-        <div class="sidebar">
-            <div class="Dashboard">
-                <p><img src="./view-dashboard.svg" alt="Dashboard" >Dashboard</p>
-            </div>
-          
-            <div class="home">
-                <p><img src="./home.svg" alt="home">Home</p>
-            </div>
-            <div class="profile">
-                <p><img src="./account-box-outline.svg" alt="profile-picture">Profile</p>
-            </div>
-            <div class="message">
-                <p><img src="./message-reply-outline.svg" alt="message">Message</p>
-            </div>
-            <div class="history">
-                <p><img src="./history.svg" alt="history">History</p>
-            </div>
-            <div class="tasks">
-                <p><img src="./note-multiple.svg" alt="note-multiple">Tasks</p>
-            </div>
-            <div class="communities">
-                <p><img src="./account-group.svg" alt="account">Communities</p>           
-             </div>
-             
-             <div class="settings">
-                <p><img src="./cog.svg" alt="settings">Settings</p>
-             </div>
-             <div class="support">
-                <p><img src="./help-box-outline.svg" alt="support">Support</p>
-             </div>
-             <div class="privacy">
-                <p><img src="./shield-check-outline.svg" alt="privacy">Privacy</p>
-             </div>
-</div>
-<div class="row">
-                <h2>Your Projects</h2>
-                <div></div>
-                   <h2 class="x">Announcements</h2>
 
-</div>
-        <div class="article">
-            <div class="your-projects"> 
-                
-            <div>
-                <h2>Super Cool Project</h2>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore cupiditate mollitia minima nam quidem. Quas minima mollitia dicta officiis, temporibus sequi reprehenderit quibusdam ipsam eveniet magnam inventore blanditiis? Quos, at?</p>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg-main: #0b0f19;
+        --bg-card: #151c2c;
+        --bg-sidebar: #0f1422;
+        --accent: #6366f1;
+        --accent-hover: #4f46e5;
+        --text-main: #f3f4f6;
+        --text-muted: #9ca3af;
+        --border: rgba(255, 255, 255, 0.05);
+        --radius-lg: 16px;
+        --radius-md: 12px;
+        --radius-sm: 8px;
+        --shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+
+      body {
+        background: var(--bg-main);
+        color: var(--text-main);
+        min-height: 100vh;
+      }
+
+      /* GRID LAYOUT */
+      .container {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        min-height: 100vh;
+      }
+
+      /* SIDEBAR */
+      .sidebar {
+        background: var(--bg-sidebar);
+        border-right: 1px solid var(--border);
+        padding: 30px 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 35px;
+      }
+
+      .sidebar .title {
+        font-size: 24px;
+        font-weight: 700;
+        padding-left: 12px;
+        color: #fff;
+        letter-spacing: -0.5px;
+      }
+
+      .sidebar .group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .sidebar .item {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 12px;
+        border-radius: var(--radius-md);
+        cursor: pointer;
+        color: var(--text-muted);
+        font-weight: 500;
+        transition: all 0.2s ease;
+      }
+
+      .sidebar .item:hover,
+      .sidebar .item.active {
+        background: rgba(99, 102, 241, 0.1);
+        color: var(--accent);
+      }
+
+      .sidebar img {
+        width: 20px;
+        height: 20px;
+        filter: invert(70%) sepia(10%) saturate(400%) hue-rotate(180deg);
+        transition: filter 0.2s;
+      }
+
+      .sidebar .item:hover img,
+      .sidebar .item.active img {
+        filter: invert(44%) sepia(91%) saturate(1243%) hue-rotate(215deg)
+          brightness(97%) contrast(92%);
+      }
+
+      /* MAIN CONTENT BLOCK */
+      .main-content {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        overflow-y: auto;
+      }
+
+      /* NAVIGATION BAR */
+      .nav {
+        background: rgba(15, 20, 34, 0.8);
+        backdrop-filter: blur(12px);
+        padding: 20px 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+
+      .top1 {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .search {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: var(--bg-card);
+        padding: 10px 16px;
+        border-radius: var(--radius-md);
+        max-width: 480px;
+        border: 1px solid var(--border);
+      }
+
+      .search input {
+        border: none;
+        outline: none;
+        background: transparent;
+        color: var(--text-main);
+        width: 100%;
+        font-size: 14px;
+      }
+
+      .search input::placeholder {
+        color: var(--text-muted);
+      }
+
+      .search img {
+        filter: invert(70%);
+      }
+
+      .right {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .right > img[src*="bell"] {
+        filter: invert(80%);
+        cursor: pointer;
+      }
+
+      .avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid var(--accent);
+      }
+
+      .right span {
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      /* USER INTRO STRIP */
+      .top2 {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .intro {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .intro img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: var(--shadow);
+      }
+
+      .intro h3 {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 2px;
+      }
+
+      .intro p {
+        color: var(--text-muted);
+        font-size: 14px;
+      }
+
+      .buttons {
+        display: flex;
+        gap: 12px;
+      }
+
+      button {
+        background: var(--accent);
+        border: none;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: var(--radius-md);
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 14px;
+        transition:
+          background 0.2s,
+          transform 0.1s;
+      }
+
+      button:hover {
+        background: var(--accent-hover);
+      }
+
+      button:active {
+        transform: scale(0.98);
+      }
+
+      /* SECTIONED DASHBOARD CONTAINER */
+      .dashboard-grid {
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        gap: 30px;
+        padding: 30px 40px;
+      }
+
+      .column-title {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        letter-spacing: -0.3px;
+      }
+
+      /* PROJECTS GRID */
+      .your-projects {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+      }
+
+      .project {
+        background: var(--bg-card);
+        padding: 24px;
+        border-radius: var(--radius-lg);
+        border-top: 4px solid var(--accent);
+        box-shadow: var(--shadow);
+        border-left: none; /* Upgraded to top baraccent indicator */
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+
+      .project:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+      }
+
+      .project h3 {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      .project p {
+        color: var(--text-muted);
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      /* ANNOUNCEMENTS PANEL */
+      .announcements-wrapper {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .announcements {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        background: var(--bg-card);
+        padding: 20px;
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow);
+      }
+
+      .box {
+        background: transparent;
+        padding-bottom: 16px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .box:last-child {
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+
+      .box h4 {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--accent);
+        margin-bottom: 6px;
+      }
+
+      .box p {
+        color: var(--text-muted);
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      /* RESPONSIVE MEDIA QUERIES */
+      @media (max-width: 1100px) {
+        .dashboard-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          grid-template-columns: 1fr;
+        }
+
+        .sidebar {
+          padding: 15px;
+          gap: 15px;
+          border-right: none;
+          border-bottom: 1px solid var(--border);
+        }
+
+        .sidebar .title {
+          text-align: center;
+          padding: 0;
+        }
+
+        .sidebar .group {
+          flex-direction: row;
+          overflow-x: auto;
+          padding-bottom: 5px;
+          scrollbar-width: none; /* Hide scrollbar for clean app experience */
+        }
+
+        .sidebar .group::-webkit-scrollbar {
+          display: none;
+        }
+
+        .sidebar .item {
+          padding: 8px 14px;
+          white-space: nowrap;
+        }
+
+        .nav {
+          padding: 20px;
+        }
+
+        .top2 {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 20px;
+        }
+
+        .buttons {
+          width: 100%;
+        }
+
+        .buttons button {
+          flex: 1;
+          text-align: center;
+        }
+
+        .dashboard-grid {
+          padding: 20px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <aside class="sidebar">
+        <div class="title">Dashboard</div>
+
+        <div class="group">
+          <div class="item active">
+            <img src="./view-dashboard.svg" />Dashboard
+          </div>
+          <div class="item"><img src="./home.svg" />Home</div>
+          <div class="item"><img src="./account-box-outline.svg" />Profile</div>
+          <div class="item">
+            <img src="./message-reply-outline.svg" />Messages
+          </div>
+          <div class="item"><img src="./history.svg" />History</div>
+          <div class="item"><img src="./note-multiple.svg" />Tasks</div>
+          <div class="item"><img src="./account-group.svg" />Communities</div>
+        </div>
+
+        <div class="group">
+          <div class="item"><img src="./cog.svg" />Settings</div>
+          <div class="item"><img src="./help-box-outline.svg" />Support</div>
+          <div class="item">
+            <img src="./shield-check-outline.svg" />Privacy
+          </div>
+        </div>
+      </aside>
+
+      <div class="main-content">
+        <header class="nav">
+          <div class="top1">
+            <div class="search">
+              <img src="./search-line-icon.svg" width="18" />
+              <input type="search" placeholder="Search everything..." />
             </div>
-             <div>
-                <h2>less Cool Project</h2>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore cupiditate mollitia minima nam quidem. Quas minima mollitia dicta officiis, temporibus sequi reprehenderit quibusdam ipsam eveniet magnam inventore blanditiis? Quos, at?</p>
+
+            <div class="right">
+              <img src="./bell-ring.svg" width="20" />
+              <img src="./gohan.jpg" class="avatar" />
+              <span>Gohan</span>
             </div>
-             <div>
-                <h2>impossible App</h2>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore cupiditate mollitia minima nam quidem. Quas minima mollitia dicta officiis, temporibus sequi reprehenderit quibusdam ipsam eveniet magnam inventore blanditiis? Quos, at?</p>
+          </div>
+
+          <div class="top2">
+            <div class="intro">
+              <img src="./gohan.jpg" />
+              <div>
+                <h3>Welcome back,</h3>
+                <p>Gohan (@DBZ)</p>
+              </div>
             </div>
-             <div>
-                <h2>Eazy peasy App</h2>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore cupiditate mollitia minima nam quidem. Quas minima mollitia dicta officiis, temporibus sequi reprehenderit quibusdam ipsam eveniet magnam inventore blanditiis? Quos, at?</p>
+
+            <div class="buttons">
+              <button>New</button>
+              <button>Upload</button>
+              <button>Share</button>
             </div>
-             <div>
-                <h2>Ad Blocker</h2>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore cupiditate mollitia minima nam quidem. Quas minima mollitia dicta officiis, temporibus sequi reprehenderit quibusdam ipsam eveniet magnam inventore blanditiis? Quos, at?</p>
+          </div>
+        </header>
+
+        <main class="dashboard-grid">
+          <section class="projects-wrapper">
+            <h2 class="column-title">Your Projects</h2>
+
+            <div class="your-projects">
+              <div class="project">
+                <h3>Super Cool Project</h3>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Core
+                  modular interface builds.
+                </p>
+              </div>
+
+              <div class="project">
+                <h3>Less Cool Project</h3>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Legacy asset pipelines.
+                </p>
+              </div>
+
+              <div class="project">
+                <h3>Impossible App</h3>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Neural network systems routing data mapping.
+                </p>
+              </div>
+
+              <div class="project">
+                <h3>Easy Peasy App</h3>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Rapid
+                  deployment tools.
+                </p>
+              </div>
+
+              <div class="project">
+                <h3>Ad Blocker</h3>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. DNS
+                  filtering engine script.
+                </p>
+              </div>
+
+              <div class="project">
+                <h3>Money Maker</h3>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. High
+                  frequency automated algorithms.
+                </p>
+              </div>
             </div>
-             <div>
-                <h2>Money Maker</h2>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore cupiditate mollitia minima nam quidem. Quas minima mollitia dicta officiis, temporibus sequi reprehenderit quibusdam ipsam eveniet magnam inventore blanditiis? Quos, at?</p>
+          </section>
+
+          <aside class="announcements-wrapper">
+            <h2 class="column-title">Announcements</h2>
+
+            <div class="announcements">
+              <div class="box">
+                <h4>Update</h4>
+                <p>
+                  System maintenance scheduled for v2.4 launch tonight at 02:00
+                  UTC.
+                </p>
+              </div>
+
+              <div class="box">
+                <h4>Security</h4>
+                <p>
+                  End-to-end encryption hashes updated. Review your privacy
+                  ledger config.
+                </p>
+              </div>
+
+              <div class="box">
+                <h4>Trending</h4>
+                <p>#DBZ #Frontend #Dashboard #NextGen</p>
+              </div>
             </div>
-            </div>
-           <div class="announcements">
-             <div>
-                <h2>Super Cool Project</h2>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore cupiditate mollitia minima nam quidem. Quas minima mollitia dicta officiis, temporibus sequi reprehenderit quibusdam ipsam eveniet magnam inventore blanditiis? Quos, at?</p>
-             </div>            
-               <div>
-                <h2>Super Cool Project</h2>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore cupiditate mollitia minima nam quidem. Quas minima mollitia dicta officiis, temporibus sequi reprehenderit quibusdam ipsam eveniet magnam inventore blanditiis? Quos, at?</p>
-            </div>
-             <div>
-                <h2>Super Cool Project</h2>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore cupiditate mollitia minima nam quidem. Quas minima mollitia dicta officiis, temporibus sequi reprehenderit quibusdam ipsam eveniet magnam inventore blanditiis? Quos, at?</p>
-            </div>
-            <div class="trending">
-                <h2>Trending</h2>
-                 <div>dummy-1</div>
-                 <div>dummy-2</div>
-                 <div>dummy-3</div>
-                 <div>dummy-4</div>
-            </div>
-            </div>
-           </div>
-           </div>
-</body>
+          </aside>
+        </main>
+      </div>
+    </div>
+  </body>
 </html>
